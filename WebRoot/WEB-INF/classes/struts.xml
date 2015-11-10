@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- 配置为开发模式 -->
+    <constant name="struts.devMode" value="true" />
+    <!-- 把扩展名配置为action -->
+    <constant name="struts.action.extension" value="action" />
+    <!-- 把主题配置为simple -->
+    <constant name="struts.ui.theme" value="simple" />
+	
+   
+    <package name="default" namespace="/" extends="struts-default">
+      
+		<!-- 配置测试用的Action，未与Spring整合，class属性写类的全名 -->
+		<action name="adminComment_*" class="adminCommentAction" method="{1}">
+			<result name="list">/comment.jsp</result>
+			
+			<result name="delete" type="redirectAction">
+				<param name="actionName">adminComment_getAllComment?page=${page}</param>
+			</result>
+		</action>
+		
+		
+		<action name="adminNews_*" class="adminNewsAction" method="{1}">
+			<result name="list">/news.jsp</result>
+			<result name="getNewsList" type="redirectAction">adminNews_getAllNews?page=1</result>
+			<result name="getNewsByUrl" type="redirectAction">
+				<param name="actionName">adminNews_getAllNews.action</param>
+     			<param name="page">1</param>
+     			<param name="url">${url}</param>
+			</result>
+			<result name="getNewsById">/manageNews.jsp</result>
+		</action>
+		
+		
+		<action name="adminUser_*" class="adminUserAction" method="{1}">
+			<result name="list">/user.jsp</result>
+		</action>
+		<!-- 当Struts2与Spring整合后，class属性可以写bean的名称 -->
+		<action name="test" class="testAction">
+			<result name="success">/test.jsp</result>
+		</action>
+		
+		<action name="news_*" class="newsAction" method="{1}">
+			<result name="showAll"></result>
+			<result name="getNewsById"></result>
+			<result name="getNewsByDevelop"></result>
+			<result name="getNewsList"></result>
+		</action>
+		
+		<action name="userLabel_*" class="userLabelAction" method="{1}">
+			<result name="showSelectedLabel"></result>
+			<result name="showUnselectLabel"></result>
+		</action>
+		
+		<action name="picCollection_*" class="picCollectionAction" method="{1}">
+			<result name="showPic"></result>
+		</action>
+		
+		<action name="comment_*" class="commentAction" method="{1}">
+			<result name="add">/index.jsp</result>
+			<result name="getPraiseComment"></result>
+			<result name="getByTimeAndPraise"></result>
+			<result name="getAllCommentByPraise"></result>
+			<result name="praise"></result>
+		</action>
+
+		<action name="advice_*" class="adviceAction" method="{1}">
+			<result name="showAdvice"></result>
+		</action>
+		
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="login"></result>
+			<result name="updateLocation"></result>
+			<result name="register"></result>
+			<result name="headPicSet"></result>
+			<result name="updateUserInfo"></result> 
+		</action>
+		
+		<action name="develop_*" class="developAction" method="{1}">
+			<result name="developKey"></result>
+			<result name="list"></result>
+			<result name="delete"></result>
+			<result name="update"></result>
+		</action>
+		
+		<action name="collection_*" class="collectionAction" method="{1}">
+			<result name="addCollection">/test.jsp</result>
+			<result name="showCollection">/test.jsp</result>
+			<result name="delete">/test.jsp</result>
+		</action>
+		
+		<action name="login*" class="loginAction" method="{1}">
+			<result name="index">/index.jsp</result>
+		</action>
+		
+
+    </package>
+    
+    <package name="manageAction" namespace="/" extends="struts-default">
+    	<action name="manage-*" class="manageAction" method="{1}">
+			<result name="label">/label.jsp</result>
+			<result name="topic">/topic.jsp</result>
+			<result name="dirty">/dirty.jsp</result>
+			<result name="topicNews">/topicNews.jsp</result>
+		</action>
+	</package>
+    <!-- Add packages here -->
+
+</struts>

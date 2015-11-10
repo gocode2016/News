@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.news.domain">
+
+	<class name="UserKeyWord" table="userKeyWord">
+		<id name="id">
+            <generator class="native"/>
+		</id>
+		<property name="keyValue" />
+		
+		<!-- 本类与Keyword类的多对一关系 -->
+		<many-to-one name="keyWord" class="KeyWord" column="wordId"></many-to-one>
+		
+		<!-- 本类与User类的多对一关系 -->
+		<many-to-one name="user" class="User" column="userId"></many-to-one>
+	</class>
+	
+</hibernate-mapping>

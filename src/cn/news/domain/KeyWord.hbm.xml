@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.news.domain">
+
+	<class name="KeyWord" table="keyWord">
+		<id name="wordId">
+            <generator class="native"/>
+		</id>
+		<property name="keyWord" />
+		
+		<!-- 本类与news类的关系为多对多 -->
+		<set name="news" table="newskey">
+			<key column="wordId"></key>
+			<many-to-many class="News" column="newsId"></many-to-many>
+		</set>
+		
+		<!-- 本类与UserKeyWord的关系为一对多 -->
+		<set name="userKeyWords">
+			<key column="wordId"></key>
+			<one-to-many class="UserKeyWord"/>
+		</set>
+	</class>
+	
+</hibernate-mapping>

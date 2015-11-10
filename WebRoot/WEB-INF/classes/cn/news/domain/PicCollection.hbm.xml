@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.news.domain">
+
+	<class name="PicCollection" table="picCollection" lazy="false">
+		<id name="picId">
+			<generator class="native"></generator>
+		</id>
+		<!-- 本类与NEWS为多对一的关系 -->
+		<many-to-one name="news" class="News" column="newsId"></many-to-one>
+		<property type="text" name="picIntroduction"></property>
+		<property name="picUrl"></property>
+	</class>
+
+</hibernate-mapping>

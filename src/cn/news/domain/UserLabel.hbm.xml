@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.news.domain">
+
+	<class name="UserLabel" table="userLabel">
+		<id name="userLabelId">
+			<generator class="native"></generator>
+		</id>
+		
+		<many-to-one name="user" class="User" column="userId"></many-to-one>
+		<many-to-one name="newsLabel" class="NewsLabel" column="newsLabelId"></many-to-one>
+		
+		<property name="showSequence"></property>
+	</class>
+
+
+</hibernate-mapping>

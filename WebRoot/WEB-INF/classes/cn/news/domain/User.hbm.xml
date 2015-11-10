@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.news.domain">
+
+	<class name="User" table="user">
+		<id name="userId">
+            <generator class="native"/>
+		</id>
+		<property name="userName" />
+		<property name="userPwd" />
+		<property name="userNickName" />
+		<property name="userHeadPicture" />
+		<property name="userGender"/>
+		<property name="userLocation" />
+		
+		<!-- userLabel -->
+		<set name="userLabels" order-by="id" inverse="true">
+			<key column="userId"></key>
+			<one-to-many class="UserLabel"/>
+		</set>
+		
+		<!-- 本类与news的多对多关系 收藏 -->
+		<set name="news" table="collection" inverse="false" cascade="save-update">
+			<key column="userId"></key>
+			<many-to-many class="News" column="newsId"></many-to-many>
+		</set>
+		
+		<!-- 本类与comment的一对多关系 -->
+		<set name="comments" table="comment">
+			<key column="userId"></key>
+			<one-to-many class="Comment"/>
+		</set>
+		
+		<!-- 本类与develosp的一对多关系 -->
+		<set name="develops"  table="develop">
+       		<key column="userId"></key>
+       		<one-to-many class="Develop"/>
+       	</set>
+       	
+       	<!-- 本类与UserKeyWord的一对多关系 -->
+		<set name="userKeyWords"  table="userKeyWord">
+       		<key column="userId"></key>
+       		<one-to-many class="UserKeyWord"/>
+       	</set>
+	</class>
+	
+</hibernate-mapping>

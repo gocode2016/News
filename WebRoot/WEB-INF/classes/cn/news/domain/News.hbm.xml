@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.news.domain">
+
+	<class name="News" table="news">
+		<id name="newsId">
+            <generator class="native"/>
+		</id>
+		<property type="text" name="newsTitle" />
+		<property type="text" name="newsIntroduction" />
+		<property type="text" name="newsContent" />
+		<property name="newsPubTime" />
+		<property name="newsSources" />
+		<property name="newsCommentNum" />
+		<property name="newsTopShow" />
+		
+		<!-- 本类与user的多对多关系 收藏 -->
+		<set name="users" table="collection">
+			<key column="newsId"></key>
+			<many-to-many class="User" column="userId"></many-to-many>
+		</set>
+		
+		<!-- 本类与comment的一对多关系 -->
+		<set name="comments">
+			<key column="newsId"></key>
+			<one-to-many class="Comment"/>
+		</set>
+		
+		<!-- 本类与pic的一对多关系 -->
+		<set name="picCollection">
+			<key column="newsId"></key>
+			<one-to-many class="PicCollection"/>
+		</set>
+		
+		<!-- 本类与advice的多对一关系 -->
+		<many-to-one name="advice" class="Advice" column="adviceId"></many-to-one>
+		<!-- 本类与newsType的多对一关系 -->
+		<many-to-one name="newsType" class="NewsType" column="newsTypeId"></many-to-one>
+		<!-- 本类与newsLabel的多对一关系 -->
+		<many-to-one name="newsLabel" class="NewsLabel" column="newsLabelId"></many-to-one>
+		
+		<!-- 本类与KeyWord类的多对多关系 -->
+		<set name="keyWords" table="newskey">
+			<key column="newsId"></key>
+			<many-to-many class="KeyWord" column="wordId"></many-to-many>
+		</set>
+		
+		<!-- 本类与Topic类的关系为多对一 -->
+		<many-to-one name="topic" class="Topic" column="topicId"></many-to-one>
+	</class>
+	
+</hibernate-mapping>

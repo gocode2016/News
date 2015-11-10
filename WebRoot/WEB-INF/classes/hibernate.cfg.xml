@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+<session-factory>
+
+	<!-- 1，数据库连接信息 -->
+	<!-- <property name="dialect">
+		org.hibernate.dialect.MySQL5InnoDBDialect
+		</property> -->
+	<property name="hibernate.dialect">
+		org.hibernate.dialect.MySQLDialect
+	</property>
+	<!-- 
+		<property name="connection.url">jdbc:mysql:///itcastoa0720</property>
+		<property name="connection.driver_class">com.jdbc.mysql.Driver</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">root</property>
+	-->
+
+	<!-- 2，其他配置 -->
+	<property name="show_sql">true</property>
+	<property name="hbm2ddl.auto">update</property>
+	<property name="javax.persistence.validation.mode">none</property>
+
+	<!-- 3，导入映射文件 -->
+	<mapping resource="cn/news/domain/User.hbm.xml" />
+	<mapping resource="cn/news/domain/Admin.hbm.xml" />
+	<mapping resource="cn/news/domain/Advice.hbm.xml" />
+	<mapping resource="cn/news/domain/Develop.hbm.xml" />
+	<mapping resource="cn/news/domain/NewsLabel.hbm.xml" />
+	<mapping resource="cn/news/domain/NewsType.hbm.xml" />
+	<mapping resource="cn/news/domain/PicCollection.hbm.xml" />
+	<mapping resource="cn/news/domain/UserLabel.hbm.xml" />
+	<mapping resource="cn/news/domain/News.hbm.xml" />
+	<mapping resource="cn/news/domain/Comment.hbm.xml" />
+	<mapping resource="cn/news/domain/Topic.hbm.xml" />
+	<mapping resource="cn/news/domain/UserKeyWord.hbm.xml" />
+	<mapping resource="cn/news/domain/KeyWord.hbm.xml" />
+	<mapping resource="cn/news/domain/Dirty.hbm.xml" />
+
+
+
+</session-factory>
+
+</hibernate-configuration>
